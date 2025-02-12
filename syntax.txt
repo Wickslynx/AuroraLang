@@ -1,0 +1,27 @@
+printf("No specify required but is possible {varname}.")
+# = PREPROCCESOR !NEED THIS!
+#if defined();
+
+#if not defined();
+
+#define NWAAwda
+
+New type: str 
+str name = "Hello"
+
+(Funcs)
+int calc();
+str run();
+bool isgreen();
+char letter();
+
+Same as C
+if () {
+
+}
+
+else if () {
+
+}
+
+* pointers same.
