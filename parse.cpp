@@ -1,13 +1,18 @@
+#include <stdio.h>
+#include <ctype.h>
 #include "parse.h"
+
 
 Token getToken(const char c) {
     Token token;
-    switch (c) {
-        case '0' ... '9':
-            token.type=TOKEN_INT;
+
+    switch(c) {
+        case '0' ... '9': 
+            token.type = TOKEN_INT;
             token.value = c - '0';
             break;
-        case 'a' .... 'z':
+        case 'a' ... 'z':  
+        case 'A' ... 'Z':
             token.type = TOKEN_CHAR;
             token.character = c;
             break;
@@ -20,33 +25,62 @@ Token getToken(const char c) {
         case '/':
             token.type = TOKEN_DIVIDE;
             break;
-        
         default:
             token.type = TOKEN_EOF;
             break;
     }
-    
-
     return token;
 }
 
+// mv 1 step forwards
+void lforwards(Lexer *lexer) {
+    lexer->pos++;
+}
 
-int lexer(const char* filename) {
-  if (!filename) {
-    error(2, "No file given to lexer.");
-  }
 
-  FILE* ifile = fopen(filename, "r");
-  
-  if (ifile == NULL) {
-    error(1, "error opening file...";
-  }
+// lex fn: reads from file and tokenizes it.
+int lex(Lexer* lexer, const char* filename) {
+    if (!filename) {
+        error(2, "No file given to lexer.");
+    }
+
+    FILE* ifile = fopen(filename, "r");
+    if (ifile == NULL) {
+        error(1, "Error opening file...");
+    }
+
+
+    lexer->ifile = ifile;
+    lexer->pos = 0;
     
-  char c;
-    
-  while ((c = fgetc(ifile)) != EOF) {
-    getToken(c);
-  }
 
-  fclose(ifile);
+    while ((lexer->cchar = fgetc(ifile)) != EOF) {
+        Token token = getToken((char)lexer->cchar);
+
+        switch(token.type) {
+            case TOKEN_INT:
+                printf("Got an INT: %d\n", token.value);
+                break;
+            case TOKEN_CHAR:
+                printf("Got a CHAR: %c\n", token.character);
+                break;
+            case TOKEN_PLUS:
+                printf("Got a PLUS: +\n");
+                break;
+            case TOKEN_MINUS:
+                printf("Got a MINUS: -\n");
+                break;
+            case TOKEN_DIVIDE:
+                printf("Got a DIVIDE: /\n");
+                break;
+            case TOKEN_EOF:
+                printf("Got EOF.\n");
+                break;
+        }
+
+        lforwards(lexer);
+    }
+
+    fclose(ifile);
+    return 0;
 }
