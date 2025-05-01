@@ -37,8 +37,10 @@ typedef enum {
 
 typedef struct {
     TokenType type;
-    int value;  // For ints.
-    char character; // For chars.
+    union {
+      int value;  // For ints.
+      char character; // For chars.
+    }
 } Token;
 
 typdef struct {
@@ -47,13 +49,12 @@ typdef struct {
   char cchar;
 } Lexer;
 
-// you want to be able to consume arbitrary characters and sometimes skip certain characters. So you probably want a Lexer struct which hold your string and consumes parts off the front of it etc
 
 
-Token getToken(Lexer* lexer);
+Token getToken(const char c);
 
 
-int lexer(const char* filename);
+int lexer(Lexer* lexer, const char* filename);
 
 
 #endif //PARSE_H
