@@ -10,7 +10,7 @@ aur hello.aur hello
 int main(int argc, char* argv[]) {
 
   if (strcmp(argv[1], "--version") == 0) {
-    std::cout << "(V) Aur  1.0.0 (BETA) \n  (L) MIT License  \n Build: Stable-release. \n Support: https://github.com/Wickslynx/AuroraLang/issues";
+    std::cout << "(V) Aur  1.0.0 (BETA) \n  (L) MIT License  \n Build: Stable-release. \n Support: https://github.com/Wickslynx/AuroraLang/issues \n";
     return -1;
   }
   
