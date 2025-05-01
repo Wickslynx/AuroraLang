@@ -1,3 +1,6 @@
+#include "parse.h"
+#include "lexer.h"
+
 void semanticAnalysis(AstNode* node) {
     if (!node)
         return;
