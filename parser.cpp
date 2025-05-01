@@ -30,20 +30,22 @@ AstNode* parsePrimary() {
     node->left = nullptr;
     node->right = nullptr;
     
-    if (currentToken.type == TOKEN_INT) {
-        node->type     = AST_INT;
-        node->value    = currentToken.value;
-        node->toktype  = currentToken.type;
-        ctoken(TOKEN_INT);
-    } else if (currentToken.type == TOKEN_CHAR) {
-        node->type      = AST_CHAR;
-        node->character = currentToken.character;
-        node->toktype   = currentToken.type;
-        ctoken(TOKEN_CHAR);
-    } else {
-        std::cerr << "Expected an integer or character literal." << std::endl;
-        std::exit(EXIT_FAILURE);
+    switch (currentToken.type) {
+        case TOKEN_INT:
+            node->type     = AST_INT;
+            node->value    = currentToken.value;
+            node->toktype  = currentToken.type;
+            ctoken(TOKEN_INT);
+        case TOKEN_CHAR:
+            node->type      = AST_CHAR;
+            node->character = currentToken.character;
+            node->toktype   = currentToken.type;
+            ctoken(TOKEN_CHAR);
+        default:
+            std::cerr << "Expected an integer or character literal." << std::endl;
+            std::exit(EXIT_FAILURE);
     }
+    
     return node;
 }
 
