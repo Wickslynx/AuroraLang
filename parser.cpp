@@ -1,14 +1,26 @@
+// parse.cpp
 #include "parse.h"
 #include <iostream>
 #include <cstdlib>
 
+/* Parser for AuroraLang:
+- Wicks (2025).
 
+All rights reserved.
+
+The lexer is defined in "lexer.h", so is the getnexttoken function.
+*/
+
+
+Token currentToken;
+extern Token getNextToken();
 
 void ctoken(TokenType expected) {
     if (currentToken.type == expected) {
         currentToken = getNextToken();
     } else {
-        error("Unexpected token.");
+        std::cerr << "Unexpected token." << std::endl;
+        std::exit(EXIT_FAILURE);
     }
 }
 
@@ -17,7 +29,7 @@ AstNode* parsePrimary() {
     AstNode* node = new AstNode();
     node->left = nullptr;
     node->right = nullptr;
-
+    
     if (currentToken.type == TOKEN_INT) {
         node->type     = AST_INT;
         node->value    = currentToken.value;
@@ -29,17 +41,18 @@ AstNode* parsePrimary() {
         node->toktype   = currentToken.type;
         ctoken(TOKEN_CHAR);
     } else {
-        aurerror(1, "Expected an integer or character literal.");
+        std::cerr << "Expected an integer or character literal." << std::endl;
+        std::exit(EXIT_FAILURE);
     }
     return node;
 }
 
 // check for binary experssions.
 AstNode* parseExpression() {
-    // so copilot said i was supposed to start with the primary.
+    // so always start with the primary ig.
     AstNode* left = parsePrimary();
 
-    // is the next token a operator that we support?
+    // when the current token is a supported operator, build a op.
     while (currentToken.type == TOKEN_PLUS ||
            currentToken.type == TOKEN_MINUS ||
            currentToken.type == TOKEN_DIVIDE) {
@@ -49,21 +62,20 @@ AstNode* parseExpression() {
         node->left = left;
         node->right = nullptr;
 
+        // save the op in a node.
         node->toktype = currentToken.type;
-
-        
         ctoken(currentToken.type);
 
-        // same as the one before.
+        // parse the next right node.
         node->right = parsePrimary();
 
-        // whole thing becomes the left side.
+        // the node is moved to left.
         left = node;
     }
     return left;
 }
 
-// free all mem.
+// free the AST.
 void freeAst(AstNode* node) {
     if (!node)
         return;
