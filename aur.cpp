@@ -1,6 +1,7 @@
 // This will be the main file.
 
 #include <iostream>
+#include <cstring>
 
 /* Example command: 
 aur hello.aur hello
@@ -8,8 +9,8 @@ aur hello.aur hello
 
 int main(int argc, char* argv[]) {
 
-  if (strcmp(argv[1], "version") == 0) {
-    std::cout << "Aur - Stable release \n Version: 1.0.0 (BETA) \n MIT License";
+  if (strcmp(argv[1], "--version") == 0) {
+    std::cout << "Aur - Stable release \n Version: 1.0.0 (BETA) \n MIT License \n";
     return;
   }
   char *filename = argv[1]; // First argument is always filename..
