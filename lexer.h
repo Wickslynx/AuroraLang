@@ -10,6 +10,8 @@
 
 #include "error.h"
 
+extern Lexer globalLexer;
+
 /*
 Hmm... So how will this return?? 
 It will return EOFS in the token struct, pretty easy actually.
