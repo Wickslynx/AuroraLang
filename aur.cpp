@@ -10,7 +10,7 @@ aur hello.aur hello
 int main(int argc, char* argv[]) {
 
   if (strcmp(argv[1], "--version") == 0) {
-    std::cout << "Aur - Stable release \n Version: 1.0.0 (BETA) \n MIT License \n";
+    std::cout << "(V) Aur  1.0.0 (BETA) \n  (L) MIT License  \n Build: Stable-release. \n Support: https://github.com/Wickslynx/AuroraLang/issues";
     return;
   }
   char *filename = argv[1]; // First argument is always filename..
