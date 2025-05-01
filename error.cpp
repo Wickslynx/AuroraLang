@@ -1,4 +1,5 @@
-
+#include <stdio.h>
+#include <cstdlib.h>
 #include "error.h"
 
 void aurerror(int status, char* error) {
