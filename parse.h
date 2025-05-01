@@ -20,6 +20,8 @@ struct AstNode {
   AstNode* right;
 };
 
+extern Lexer globalLexer;
+
 // parse smth.
 AstNode* parseExpression();
 
