@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <ctype.h>
-#include "parse.h"
+#include "lexer.h"
 
 
 Token getToken(const char c) {
