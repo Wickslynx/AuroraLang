@@ -11,6 +11,8 @@ ERROR return codes:
 -3 Fatal error.
 */
 
+extern Lexer globalLexer;
+
 void aurerror(int status, char* error);
 
 #endif
