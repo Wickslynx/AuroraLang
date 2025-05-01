@@ -61,12 +61,12 @@ void lforwards(Lexer *lexer) {
 // lex fn: reads from file and tokenizes it. ( how tf do u spell tokenize or smth)
 int lex(Lexer* lexer, const char* filename) {
     if (!filename) {
-        error(2, "No file given to lexer.");
+        aurerror(2, "No file given to lexer.");
     }
 
     FILE* ifile = fopen(filename, "r");
     if (ifile == NULL) {
-        error(1, "Error opening file...");
+        aurerror(1, "Error opening file...");
     }
 
 
