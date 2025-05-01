@@ -42,13 +42,15 @@ typedef struct {
 } Token;
 
 typdef struct {
-  Token tokens;
+  const char* input;
+  size_t pos;
+  char cchar;
 } Lexer;
 
 // you want to be able to consume arbitrary characters and sometimes skip certain characters. So you probably want a Lexer struct which hold your string and consumes parts off the front of it etc
 
 
-Token getToken(const char c);
+Token getToken(Lexer* lexer);
 
 
 int lexer(const char* filename);
