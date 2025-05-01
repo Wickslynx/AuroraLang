@@ -44,7 +44,7 @@ typedef struct {
 } Token;
 
 typedef struct {
-  const char* input;
+  FILE* ifile;
   size_t pos;
   char cchar;
 } Lexer;
