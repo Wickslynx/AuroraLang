@@ -7,6 +7,7 @@
 //                 HELPERS 
 // ------------------------------------------
 
+Lexer globalLexer;
 
 Token getNextToken() {
     globalLexer.cchar = fgetc(globalLexer.ifile); // Read from the file to get the next token.
