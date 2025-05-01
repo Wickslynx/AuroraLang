@@ -1,5 +1,5 @@
-#ifndef PARSE_H
-#define PARSE_H
+#ifndef LEXER_H
+#define LEXER_H
 
 /*NOTE: This will be the only file that is handling the input file to avoid confusion. */
 #include <stdio.h>
@@ -57,4 +57,4 @@ Token getToken(const char c);
 int lexer(Lexer* lexer, const char* filename);
 
 
-#endif //PARSE_H
+#endif //LEXER_H
