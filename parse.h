@@ -25,7 +25,11 @@ typedef enum {
   // Types..
   TOKEN_INT,
   TOKEN_CHAR,
+
+  //Math :sob:
   TOKEN_PLUS,
+  TOKEN_MINUS,
+  TOKEN_DIVIDE,
 
   // Other..
   TOKEN_EOF 
