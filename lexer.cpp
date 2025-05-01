@@ -3,6 +3,26 @@
 #include "lexer.h"
 
 
+// ------------------------------------------
+//                 HELPERS 
+// ------------------------------------------
+
+
+Token getNextToken() {
+    globalLexer.cchar = fgetc(globalLexer.ifile); // Read from the file to get the next token.
+    if (globalLexer.cchar == EOF) {
+        Token token;
+        token.type = TOKEN_EOF;
+        return token;
+    }
+    return getToken((char)globalLexer.cchar);
+}
+
+// ------------------------------------------
+//             MAIN FUNCTIONS
+// ------------------------------------------
+
+
 Token getToken(const char c) {
     Token token;
 
