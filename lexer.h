@@ -10,7 +10,6 @@
 
 #include "error.h"
 
-extern Lexer globalLexer;
 
 /*
 Hmm... So how will this return?? 
@@ -42,7 +41,7 @@ typedef struct {
     union {
       int value;  // For ints.
       char character; // For chars.
-    }
+    };
 } Token;
 
 typedef struct {
@@ -51,6 +50,7 @@ typedef struct {
   char cchar;
 } Lexer;
 
+extern Lexer globalLexer;
 
 
 Token getToken(const char c);
