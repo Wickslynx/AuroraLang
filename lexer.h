@@ -43,7 +43,7 @@ typedef struct {
     }
 } Token;
 
-typdef struct {
+typedef struct {
   const char* input;
   size_t pos;
   char cchar;
