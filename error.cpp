@@ -11,9 +11,10 @@ void aurerror(int status, char* error) {
   switch (status) {
     case 0: // Warning
       std::cerr << "WARNING: " << error << std::endl;
+      break;
 
     case 1: // Error
-      stdd:cerr << "ERROR: %s" << error << std::endl;
+      std::cerr << "ERROR: %s" << error << std::endl;
       exit(-2);
   }
 }
