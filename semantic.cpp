@@ -2,6 +2,27 @@
 #include "lexer.h"
 #include <iostream>
 
+
+std::string tokenTypeToString(TokenType type) {
+    switch (type) {
+        case TOKEN_INT:
+            return "int";
+        case TOKEN_CHAR:
+            return "char";
+        case TOKEN_PLUS:
+            return "+";
+        case TOKEN_MINUS:
+            return "-";
+        case TOKEN_DIVIDE:
+            return "/";
+        case TOKEN_EOF:
+            return "TOKEN_EOF";
+        default:
+            return "UNKNOWN_TOKEN";
+    }
+}
+
+
 void semanticAnalysis(AstNode* node) {
     if (!node)
         return;
