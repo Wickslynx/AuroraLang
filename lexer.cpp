@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include "lexer.h"
-
+#include <iostream>
 
 // ------------------------------------------
 //                 HELPERS 
