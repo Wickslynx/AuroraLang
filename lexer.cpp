@@ -49,6 +49,14 @@ Token getToken(const char c) {
         case '/':
             token.type = TOKEN_DIVIDE;
             break;
+        case ' ':
+            token.type = TOKEN_SPACE;
+            break;
+        case '=':
+            token.type = TOKEN_ASSIGN;
+            if (lforwards(lexer) == '=') {token.type = TOKEN_EQUAL_TO}
+            break;
+        
         default:
             token.type = TOKEN_EOF;
             break;
