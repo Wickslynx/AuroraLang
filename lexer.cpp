@@ -8,18 +8,18 @@
 // ------------------------------------------
 
 Token getNextToken(Lexer *lexer) {
-    if (!lexer.ifile) {
+    if (!lexer->ifile) {
         std::cerr << "Error: Lexer file pointer is NULL..." << std::endl;
         std::exit(EXIT_FAILURE);
     }
     
-    lexer.cchar = fgetc(globalLexer.ifile); // Read from the file to get the next token.
-    if (lexer.cchar == EOF) {
+    lexer->cchar = fgetc(lexer->ifile); // Read from the file to get the next token.
+    if (lexer->cchar == EOF) {
         Token token;
         token.type = TOKEN_EOF;
         return token;
     }
-    return getToken((char)globalLexer.cchar);
+    return getToken((char)lexer->cchar);
 }
 
 // ------------------------------------------
