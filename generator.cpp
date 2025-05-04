@@ -34,7 +34,7 @@ void generate(AstNode* node) {
     }
 }
 
-void emit(string out) { 
+void emit(std::string out) { 
     std::ofstream file("temp-aurolang-asm.asm");
     if (!file.is_open()) {
       std::cerr << "Error: Could not create file." << std::endl;
