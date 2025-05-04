@@ -38,6 +38,7 @@ void emit(string out) {
     std::ofstream file("temp-aurolang-asm.asm");
     if (!file.is_open()) {
       std::cerr << "Error: Could not create file." << std::endl;
+      return;
     }
   
     for (const auto& instr : instructions) {
