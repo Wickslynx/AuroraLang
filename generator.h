@@ -9,6 +9,6 @@ std::vector<std::string> instructions;
 
 
 void generate(AstNode* node);
-void emit();
+void emit(std::string out);
 
 #endif
