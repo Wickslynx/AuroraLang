@@ -50,11 +50,10 @@ typedef struct {
   char cchar;
 } Lexer;
 
-extern Lexer globalLexer;
 
 
 Token getToken(const char c);
-Token getNextToken();
+Token getNextToken(Lexer *lexer);
 void lforwards(Lexer *lexer);
 int lex(Lexer* lexer, const char* filename);
 
