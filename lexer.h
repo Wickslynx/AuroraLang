@@ -26,6 +26,7 @@ typedef enum {
   // Types..
   TOKEN_INT,
   TOKEN_CHAR,
+  TOKEN_STRING,
 
   //Math :sob:
   TOKEN_PLUS,
@@ -45,6 +46,7 @@ typedef struct {
     union {
       int value;  // For ints.
       char character; // For chars.
+      std::string strValue
     };
 } Token;
 
