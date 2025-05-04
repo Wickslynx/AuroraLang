@@ -36,14 +36,17 @@ AstNode* parsePrimary() {
             node->value    = currentToken.value;
             node->toktype  = currentToken.type;
             ctoken(TOKEN_INT);
+            break;
         case TOKEN_CHAR:
             node->type      = AST_CHAR;
             node->character = currentToken.character;
             node->toktype   = currentToken.type;
             ctoken(TOKEN_CHAR);
+            break;
         default:
             std::cerr << "Expected an integer or character literal." << std::endl;
             std::exit(EXIT_FAILURE);
+            break;
     }
     
     return node;
