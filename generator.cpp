@@ -25,6 +25,8 @@ void generate(AstNode* node) {
                 case TOKEN_DIVIDE:
                     instructions.push_back("div rbx");
                     break;
+                default:
+                    break;
             }
             break;
             
