@@ -4,7 +4,7 @@ CXXFLAGS := -std=c++17 -Wall -Wextra -O2
 
 
 # all srcs here
-SRCS  := aur.cpp lexer.cpp parse.cpp semantic.cpp error.cpp
+SRCS  := aur.cpp lexer.cpp parse.cpp semantic.cpp error.cpp generator.cpp
 OBJS  := $(SRCS:.cpp=.o)
 
 
