@@ -129,6 +129,8 @@ int lex(Lexer* lexer, const char* filename) {
             case TOKEN_EOF:
                 printf("Got EOF.\n");
                 break;
+            default:
+                break;
         }
 
         lforwards(lexer);
