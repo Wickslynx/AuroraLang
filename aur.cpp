@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
     lex(&aurlexer, filename);
 
     // Step 2: parse and build ast
-    Token currentToken = getNextToken();
+    Token currentToken = getNextToken(&aurlexer);
     AstNode* root = parseExpression();
 
     // Step 3: run semantic 
