@@ -1,4 +1,3 @@
-
 CXX      := g++
 CXXFLAGS := -std=c++17 -Wall -Wextra -O2
 
@@ -15,17 +14,17 @@ TARGET := aur
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
-    $(CXX) $(CXXFLAGS) $(OBJS) -o $(TARGET)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $(TARGET)
 
 
 %.o: %.cpp
-    $(CXX) $(CXXFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 .PHONY: clean
 clean:
-    rm -f $(OBJS) $(TARGET)
+	rm -f $(OBJS) $(TARGET)
 
 # Needs root..
 .PHONY: install
 install: $(TARGET)
-    install -Dm755 $(TARGET) /usr/local/bin/$(TARGET)
+	install -Dm755 $(TARGET) /usr/local/bin/$(TARGET)
