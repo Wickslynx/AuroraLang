@@ -11,8 +11,8 @@ ERROR return codes:
 -3 Fatal error.
 */
 
-#define WARNING 0;
-#define ERROR 2;
+#define __WARNING 0;
+#define __ERROR 2;
 
 void aurerror(int status, char* error);
 
