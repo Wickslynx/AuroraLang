@@ -1,19 +1,19 @@
-#include <stdio.h>
-#include <cstdlib.h>
+#include <iostream>
+#include <cstdlib>
 #include "error.h"
 
 void aurerror(int status, char* error) {
   if (!error || !status) {
-    printf("Internal error, no error or status provided..");
+    std::cerr << "Internal error, no error or status provided.." << std::endl;
     exit(-1);
   }
 
   switch (status) {
     case 0: // Warning
-      printf("WARNING: %s", error);
+      std::cerr << "WARNING: " << error << std::endl;
 
     case 1: // Error
-      printf("ERROR: %s", error)
+      stdd:cerr << "ERROR: %s" << error << std::endl;
       exit(-2);
   }
 }
