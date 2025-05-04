@@ -1,7 +1,7 @@
 #include "generator.h"
 #include "parse.h"
 
-
+std::vector<std::string> instructions;
 
 void generate(AstNode* node) {
     if (!node) return;
@@ -25,8 +25,6 @@ void generate(AstNode* node) {
                 case TOKEN_DIVIDE:
                     instructions.push_back("div rbx");
                     break;
-                default:
-                    break;
             }
             break;
             
@@ -47,12 +45,11 @@ void emit(std::string out) {
          file << instr << std::endl;
     }
 
-    std::ostringstream cmd = "nasm -f elf-64 temp-aurolang-asm.asm -o  {}" << out; 
+    std::ostringstream cmd; 
+    cmd << "nasm -f elf-64 temp-aurolang-asm.asm -o " << out; 
     
-    system(cmd.c_str());
+    system(cmd.str().c_str());
     system("rm temp-aurolang-asm.asm");
     
     file.close();
 }
-
-
