@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include "parse.h"
 
 std::vector<std::string> instructions;
 
