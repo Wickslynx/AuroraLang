@@ -31,8 +31,12 @@ typedef enum {
   TOKEN_PLUS,
   TOKEN_MINUS,
   TOKEN_DIVIDE,
+  TOKEN_ASSIGN,
 
+  // Logic
+  TOKEN_EQUAL_TO,
   // Other..
+  TOKEN_SPACE,
   TOKEN_EOF 
 } TokenType;
 
