@@ -31,10 +31,17 @@ Token getToken(const char c) {
     Token token;
 
     switch(c) {
-        case '0' ... '9': 
+        case '0' ... '9': {
+            int number = c - '0'; 
+            char nextChar;
+            while (isdigit((nextChar = fgetc(lexer->ifile)))) {
+                number = number * 10 + (nextChar - '0'); 
+            }
+            ungetc(nextChar, lexer->ifile);
             token.type = TOKEN_INT;
-            token.value = c - '0';
+            token.value = number;
             break;
+        }
         case 'a' ... 'z':  
         case 'A' ... 'Z':
             token.type = TOKEN_CHAR;
@@ -56,6 +63,20 @@ Token getToken(const char c) {
             token.type = TOKEN_ASSIGN;
             if (lforwards(lexer) == '=') {token.type = TOKEN_EQUAL_TO}
             break;
+        case '"': { // Start of a string
+            std::string strValue;
+            char nextChar;
+            while ((nextChar = fgetc(lexer->ifile)) != '"' && nextChar != EOF) {
+                strValue += nextChar;
+            }
+            if (nextChar == EOF) {
+                std::cerr << "Error: Unterminated string literal." << std::endl;
+                std::exit(EXIT_FAILURE);
+            }
+            token.type = TOKEN_STRING;
+            token.strValue = strValue;
+            break;
+        }
         
         default:
             token.type = TOKEN_EOF;
