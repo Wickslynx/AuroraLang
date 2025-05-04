@@ -10,6 +10,11 @@
 Lexer globalLexer;
 
 Token getNextToken() {
+    if (!globalLexer.ifile) {
+        std::cerr << "Error: Lexer file pointer is NULL..." << std::endl;
+        std::exit(EXIT_FAILURE);
+    }
+    
     globalLexer.cchar = fgetc(globalLexer.ifile); // Read from the file to get the next token.
     if (globalLexer.cchar == EOF) {
         Token token;
