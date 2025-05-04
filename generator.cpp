@@ -1,7 +1,6 @@
+#include "generator.h"
 #include "parse.h"
-#include <iostream>
-#include <vector>
-#include <fstream>
+
 
 
 void generate(AstNode* node) {
