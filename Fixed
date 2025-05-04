@@ -3,10 +3,11 @@
 
 #include <iostream>
 #include <vector>
+#include <sstream>
 #include <fstream>
 #include "parse.h"
 
-std::vector<std::string> instructions;
+extern std::vector<std::string> instructions;
 
 
 void generate(AstNode* node);
