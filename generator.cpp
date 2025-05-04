@@ -45,7 +45,8 @@ void emit(std::string out) {
          file << instr << std::endl;
     }
 
-    std::string cmd = std::format("nasm -f elf-64 temp-aurolang-asm.asm -o  {}", out);
+    std::ostringstream cmd = "nasm -f elf-64 temp-aurolang-asm.asm -o  {}" << out; 
+    
     system(cmd.c_str());
     system("rm temp-aurolang-asm.asm");
     
