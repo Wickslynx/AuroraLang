@@ -54,9 +54,10 @@ extern Lexer globalLexer;
 
 
 Token getToken(const char c);
+Token getNextToken();
+void lforwards(Lexer *lexer);
+int lex(Lexer* lexer, const char* filename);
 
-
-int lexer(Lexer* lexer, const char* filename);
 
 
 #endif //LEXER_H
