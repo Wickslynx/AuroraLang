@@ -20,7 +20,8 @@ void semanticAnalysis(AstNode* node) {
             
             
             if (node->left->type != AST_INT || node->right->type != AST_INT) {  // Analyse the nodes on the side, are they valid? Both has to be int for now, floats aint implemented.
-                std::cerr << "Error: Binary operator requires integer operands. \n Ex: 1 - 2" << std::endl;
+                std::cerr << "Error: Operator '" << tokenTypeToString(node->toktype)<< "' requires integer operands. Received: " << node->left->type << " and " << node->right->type << std::endl;
+
                 std::exit(EXIT_FAILURE);
             }
             node->type = AST_INT;
