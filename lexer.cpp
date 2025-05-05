@@ -6,7 +6,7 @@
 // ------------------------------------------
 //                 HELPERS 
 // ------------------------------------------
-const std::string fname;
+const char* fname;
 
 Token getNextToken(Lexer *lexer) {
     if (!lexer->ifile) {
