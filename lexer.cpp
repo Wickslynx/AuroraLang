@@ -13,7 +13,7 @@ Token getNextToken(Lexer *lexer) {
         std::cout << "Error: Lexer file pointer is NULL... Starting backup..." << std::endl;
 
         /* Backup attempt, something goes wrong in lexer open the file in here instead */
-        FILE* ifile = fopen(filename, "r");
+        FILE* ifile = fopen(fname, "r");
         if (ifile == NULL) {
             aurerror(1, "Error opening file...");
         }
