@@ -11,7 +11,8 @@ while true; do
             sudo apt upgrade g++ # To prevent C++ 20 not supported.
             break
         elif [[ "$OSTYPE" == "cygwin" || "$OSTYPE" == "msys" ]]; then
-            winget install --id=NASM.NASM -e
+            winget install --id=NASM.NASM  -e
+            winget install --id=GNU.Mingw-w64   -e
             break
         else
             echo "Automatic dependency installation is not supported on your operating system."
