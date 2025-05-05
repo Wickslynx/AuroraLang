@@ -11,9 +11,9 @@ const std::string fname;
 Token getNextToken(Lexer *lexer) {
     if (!lexer->ifile) {
         std::cerr << "Error: Lexer file pointer is NULL... Starting backup..." << std::endl;
-        
+
+        /* Backup attempt, something goes wrong in lexer open the file in here instead */
         FILE* ifile = fopen(filename, "r");
-        
         if (ifile == NULL) {
             aurerror(1, "Error opening file...");
         }
