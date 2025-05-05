@@ -21,7 +21,7 @@ Token getNextToken(Lexer *lexer) {
 
         if (!lexer->ifile) {
             std::cerr << "Error: Backup attempt failed..." << std::endl;
-            exit(-1)
+            exit(-1);
         }
     }
     
