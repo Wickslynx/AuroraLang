@@ -39,7 +39,7 @@ Token getNextToken(Lexer *lexer) {
 // ------------------------------------------
 
 
-Token getToken(const char c) {
+Token getToken(Lexer *lexer, const char c) {
     Token token;
 
     switch(c) {
