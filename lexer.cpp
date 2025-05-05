@@ -6,11 +6,23 @@
 // ------------------------------------------
 //                 HELPERS 
 // ------------------------------------------
+const std::string fname;
 
 Token getNextToken(Lexer *lexer) {
     if (!lexer->ifile) {
-        std::cerr << "Error: Lexer file pointer is NULL..." << std::endl;
-        std::exit(EXIT_FAILURE);
+        std::cerr << "Error: Lexer file pointer is NULL... Starting backup..." << std::endl;
+        
+        FILE* ifile = fopen(filename, "r");
+        
+        if (ifile == NULL) {
+            aurerror(1, "Error opening file...");
+        }
+        lexer->ifile = ifile;
+
+        if (!lexer->ifile) {
+            std::cerr << "Error: Backup attempt failed..." << std::endl;
+            exit(-1)
+        }
     }
     
     lexer->cchar = fgetc(lexer->ifile); // Read from the file to get the next token.
@@ -96,6 +108,8 @@ int lex(Lexer* lexer, const char* filename) {
     if (!filename) {
         aurerror(2, "No file given to lexer.");
     }
+
+    fname = filename
 
     FILE* ifile = fopen(filename, "r");
     if (ifile == NULL) {
