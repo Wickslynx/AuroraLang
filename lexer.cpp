@@ -122,7 +122,7 @@ int lex(Lexer* lexer, const char* filename) {
     
 
     while ((lexer->cchar = fgetc(ifile)) != EOF) {
-        Token token = getToken((char)lexer->cchar);
+        Token token = getToken(lexer, (char)lexer->cchar);
 
         switch(token.type) {
             case TOKEN_INT:
