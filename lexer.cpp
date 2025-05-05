@@ -73,7 +73,7 @@ Token getToken(const char c) {
             break;
         case '=':
             token.type = TOKEN_ASSIGN;
-            if (lforwards(lexer) == '=') {token.type = TOKEN_EQUAL_TO}
+            if (lforwards(lexer) == '=') {token.type = TOKEN_EQUAL_TO;}
             break;
         case '"': { // Start of a string
             std::string strValue;
