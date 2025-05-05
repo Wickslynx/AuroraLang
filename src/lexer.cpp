@@ -85,7 +85,7 @@ Token getToken(Lexer *lexer, const char c) {
                 std::exit(EXIT_FAILURE);
             }
             token.type = TOKEN_STRING;
-            token.strValue = strValue;
+            token.strValue = strValue.c_str();
             break;
         }
         
