@@ -8,24 +8,24 @@
 
 All rights reserved.
 
-The lexer is defined in "lexer.h", so is the getnexttoken function.
+The lexer is defined in "lexer.h", so is the getNextToken function.
 */
 
 
 Token currentToken;
-extern Token getNextToken();
+extern Token getNextToken(Lexer *lexer);
 
-void ctoken(TokenType expected) {
+void ctoken(Lexer *lexer, TokenType expected) {
     if (currentToken.type == expected) {
-        currentToken = getNextToken();
+        currentToken = getNextToken(lexer);
     } else {
         std::cerr << "Unexpected token." << std::endl;
         std::exit(EXIT_FAILURE);
     }
 }
 
-// handles the basic of the language, ints, chars....
-AstNode* parsePrimary() {
+// handles the basics of the language, ints, chars....
+AstNode* parsePrimary(Lexer *lexer) {
     AstNode* node = new AstNode();
     node->left = nullptr;
     node->right = nullptr;
@@ -35,13 +35,13 @@ AstNode* parsePrimary() {
             node->type     = AST_INT;
             node->value    = currentToken.value;
             node->toktype  = currentToken.type;
-            ctoken(TOKEN_INT);
+            ctoken(lexer, TOKEN_INT);
             break;
         case TOKEN_CHAR:
             node->type      = AST_CHAR;
             node->character = currentToken.character;
             node->toktype   = currentToken.type;
-            ctoken(TOKEN_CHAR);
+            ctoken(lexer, TOKEN_CHAR);
             break;
         default:
             std::cerr << "Expected an integer or character literal." << std::endl;
@@ -52,12 +52,12 @@ AstNode* parsePrimary() {
     return node;
 }
 
-// check for binary experssions.
-AstNode* parseExpression() {
-    // so always start with the primary ig.
-    AstNode* left = parsePrimary();
+// check for binary expressions.
+AstNode* parseExpression(Lexer *lexer) {
+    // always start with the primary expression.
+    AstNode* left = parsePrimary(lexer);
 
-    // when the current token is a supported operator, build a op.
+    // when the current token is a supported operator, build an operation node.
     while (currentToken.type == TOKEN_PLUS ||
            currentToken.type == TOKEN_MINUS ||
            currentToken.type == TOKEN_DIVIDE) {
@@ -67,12 +67,12 @@ AstNode* parseExpression() {
         node->left = left;
         node->right = nullptr;
 
-        // save the op in a node.
+        // save the operator in a node.
         node->toktype = currentToken.type;
-        ctoken(currentToken.type);
+        ctoken(lexer, currentToken.type);
 
         // parse the next right node.
-        node->right = parsePrimary();
+        node->right = parsePrimary(lexer);
 
         // the node is moved to left.
         left = node;
