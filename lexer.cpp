@@ -109,7 +109,7 @@ int lex(Lexer* lexer, const char* filename) {
         aurerror(2, "No file given to lexer.");
     }
 
-    fname = filename
+    fname = filename;
 
     FILE* ifile = fopen(filename, "r");
     if (ifile == NULL) {
