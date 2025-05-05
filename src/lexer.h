@@ -46,7 +46,7 @@ typedef struct {
     union {
       int value;  // For ints.
       char character; // For chars.
-      char* strValue; // For strings.
+      const char* strValue; // For strings.
     };
 } Token;
 
