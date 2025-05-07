@@ -35,6 +35,12 @@ struct AstNode {
 // parse smth.
 AstNode* parseExpression(Lexer* lexer);
 
+// All underlying methods..
+AstNode* parseIf(Lexer* lexer);
+AstNode* parseBlock(Lexer* lexer);
+AstNode* parseStatement(Lexer* lexer);
+AstNode* parseLocal(Lexer* lexer);
+
 // free all memory used.
 void freeAst(AstNode* node);
 
