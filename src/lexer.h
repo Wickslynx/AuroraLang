@@ -41,6 +41,7 @@ typedef enum {
   TOKEN_GLOBAL,
   TOKEN_LOCAL,
   TOKEN_CONST,
+  TOKEN_IDENTIFIER
 
   // Loops..
   TOKEN_WHILE,
