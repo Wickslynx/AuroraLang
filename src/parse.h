@@ -13,6 +13,9 @@ struct AstNode {
   AstType type;
   int value;
   char character;
+  std::string varName; 
+  std::string condition;
+  std::string body;
   
   TokenType toktype;
   
