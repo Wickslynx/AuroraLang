@@ -51,6 +51,10 @@ typedef enum {
   TOKEN_IF, 
   TOKEN_ELSE,
   TOKEN_ELIF,
+
+  // Functions..
+  TOKEN_FUNC,
+
   // Symbols..
   TOKEN_RBRACE,
   TOKEN_LBRACE,
