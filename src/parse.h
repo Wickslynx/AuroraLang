@@ -2,6 +2,7 @@
 #define PARSE_H
 
 #include "lexer.h"
+#include <string>
 
 enum AstType {
   AST_INT,
