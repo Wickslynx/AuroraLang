@@ -53,17 +53,17 @@ void generate(AstNode* node) {
         case AST_IF:
             generate(node->condition);
             instructions.push_back("cmp rax, 0");
-            instructions.push_back("je ELSE_" + std::to_string(node->label));
+            instructions.push_back("je ELSE_" + node->label);
 
             generate(node->body);
-            instructions.push_back("jmp END_IF_" + std::to_string(node->label));
+            instructions.push_back("jmp END_IF_" + node->label);
 
-            instructions.push_back("ELSE_" + std::to_string(node->label) + ":");
+            instructions.push_back("ELSE_" + std::node->label + ":");
             if (node->elseBody) {
                 generate(node->elseBody);
             }
 
-            instructions.push_back("END_IF_" + std::to_string(node->label) + ":");
+            instructions.push_back("END_IF_" + node->label + ":");
             break;
 
         default:
