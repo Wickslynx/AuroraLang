@@ -3,6 +3,10 @@ if [["$1"] == "clean"]; then
     cd src
     make clean
     exit 0
+elif [["$1"] == "--test"]; then
+    cd src
+    make install
+    exit 0
 fi
 
 echo "Installing AUR..."
