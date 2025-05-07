@@ -19,8 +19,8 @@ struct AstNode {
   char character;
   std::string varName; 
   AstNode* condition;;
-  std::string body;
-  std::string elseBody;
+  AstNode* body;
+  AstNode* elseBody;
   AstNode* expression;
   AstNode* statements;
   
@@ -30,7 +30,6 @@ struct AstNode {
   AstNode* right;
 };
 
-extern Lexer globalLexer;
 
 // parse smth.
 AstNode* parseExpression(Lexer* lexer);
