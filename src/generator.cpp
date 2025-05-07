@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <sstream>
+#include <string>
 
 std::vector<std::string> instructions;
 std::vector<std::string> data_section;
