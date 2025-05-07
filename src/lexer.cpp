@@ -80,6 +80,8 @@ Token getToken(Lexer *lexer, const char c) {
                 token.type = TOKEN_LOCAL;
             } else if (identifier == "global") {
                 token.type = TOKEN_GLOBAL;
+            } else if (identifier == "fn") {
+                token.type = TOKEN_FUNC;
             } else {
                 token.type = TOKEN_IDENTIFIER;
                 token.identifier = identifier.c_str();
