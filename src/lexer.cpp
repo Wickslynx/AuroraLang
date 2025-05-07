@@ -134,44 +134,18 @@ int lex(Lexer* lexer, const char* filename) {
     if (!filename) {
         aurerror(2, "No file given to lexer.");
     }
-
     fname = filename;
-
+    
     FILE* ifile = fopen(filename, "r");
     if (ifile == NULL) {
         aurerror(1, "Error opening file...");
     }
 
-
     lexer->ifile = ifile;
     lexer->pos = 0;
-    
 
     while ((lexer->cchar = fgetc(ifile)) != EOF) {
         Token token = getToken(lexer, (char)lexer->cchar);
-
-        switch(token.type) {
-            case TOKEN_INT:
-                printf("Got an INT: %d\n", token.value);
-                break;
-            case TOKEN_CHAR:
-                printf("Got a CHAR: %c\n", token.character);
-                break;
-            case TOKEN_PLUS:
-                printf("Got a PLUS: +\n");
-                break;
-            case TOKEN_MINUS:
-                printf("Got a MINUS: -\n");
-                break;
-            case TOKEN_DIVIDE:
-                printf("Got a DIVIDE: /\n");
-                break;
-            case TOKEN_EOF:
-                printf("Got EOF.\n");
-                break;
-            default:
-                break;
-        }
 
         lforwards(lexer);
     }
