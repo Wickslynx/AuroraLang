@@ -66,6 +66,7 @@ typedef struct {
       int value;  // For ints.
       char character; // For chars.
       const char* strValue; // For strings.
+      const char* identifier;
     };
 } Token;
 
