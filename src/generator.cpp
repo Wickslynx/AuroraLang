@@ -20,12 +20,12 @@ void generate(AstNode* node) {
             
         case AST_BINARY_OP:
             generate(node->left);
-            instructions.push_back("push rax");  // Save left operand
+            instructions.push_back("push rax");  //  save left
 
             generate(node->right);
-            instructions.push_back("mov rbx, rax");  // Move right operand
+            instructions.push_back("mov rbx, rax");  // mv right
 
-            instructions.push_back("pop rax");  // Restore left operand
+            instructions.push_back("pop rax");  // restore left
 
             switch (node->toktype) {
                 case TOKEN_PLUS:
@@ -41,7 +41,7 @@ void generate(AstNode* node) {
             break;
 
         case AST_VARIABLE:
-            // Declare variable in the `.bss` section
+            // declare var in bss
             bss_section.push_back(node->varName + " resq 1");
             instructions.push_back("mov [" + node->varName + "], rax");
             break;
@@ -98,7 +98,7 @@ void emit(std::string out) {
         file << "    " << instr << std::endl;
     }
 
-    // Exit program
+    // exit program
     file << "    mov rax, 60\n";   // syscall exit
     file << "    xor rdi, rdi\n";  // exit(0)
     file << "    syscall\n";
