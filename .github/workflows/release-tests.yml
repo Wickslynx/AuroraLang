@@ -1,0 +1,25 @@
+name: 
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Install dependencies
+      run: sudo apt update && sudo apt-get install nasm g++
+       
+    - name: Install
+      run: ./install.sh --test
+      
+    - name: Make the compiler
+      run: cmake install
+
+    
