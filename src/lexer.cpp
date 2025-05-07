@@ -101,10 +101,10 @@ Token getToken(Lexer *lexer, const char c) {
         case '=':
             token.type = TOKEN_ASSIGN;
             break;
-        case "{":
+        case '{':
             token.type = TOKEN_RBRACE;
             break;
-        case "}":
+        case '}':
             token.type = TOKEN_LBRACE;
             break;
         case '"': { // Start of a string
