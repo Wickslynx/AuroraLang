@@ -6,6 +6,9 @@
 enum AstType {
   AST_INT,
   AST_CHAR,
+  AST_BLOCK,
+  AST_IF,
+  AST_VARIABLE,
   AST_BINARY_OP
 };
 
