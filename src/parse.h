@@ -22,6 +22,7 @@ struct AstNode {
   std::string body;
   std::string elseBody;
   AstNode* expression;
+  AstNode* statements;
   
   TokenType toktype;
   
