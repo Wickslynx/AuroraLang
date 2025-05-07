@@ -58,7 +58,7 @@ void generate(AstNode* node) {
             generate(node->body);
             instructions.push_back("jmp END_IF_" + node->label);
 
-            instructions.push_back("ELSE_" + std::node->label + ":");
+            instructions.push_back("ELSE_" + node->label + ":");
             if (node->elseBody) {
                 generate(node->elseBody);
             }
