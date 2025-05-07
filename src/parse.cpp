@@ -80,6 +80,31 @@ AstNode* parseExpression(Lexer *lexer) {
     return left;
 }
 
+AstNode* parselocal(Lexer* lexer) {
+    AstNode* node = new AstNode();
+    node->type = AST_VARIABLE;
+
+    // consume local
+    ctoken(lexer, TOKEN_LOCAL);
+
+    // need var name...
+    if (currentToken.type != TOKEN_IDENTIFIER) {
+        std::cerr << "Error: Expected variable name." << std::endl;
+        std::exit(EXIT_FAILURE);
+    }
+    
+    node->varName = currentToken.identifier;
+    ctoken(lexer, TOKEN_IDENTIFIER);
+
+    // check for assignment (=)
+    if (currentToken.type == TOKEN_ASSIGN) {
+        ctoken(lexer, TOKEN_ASSIGN);
+        node->value = parseExpression(lexer);
+    }
+
+    return node;
+}
+
 AstNode* parseIf(Lexer* lexer) {
     AstNode* node = new AstNode();
     node-type = AST_IF
