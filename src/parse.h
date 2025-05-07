@@ -3,7 +3,7 @@
 
 #include "lexer.h"
 #include <string>
-#include <vector
+#include <vector>
 
 enum AstType {
   AST_INT,
