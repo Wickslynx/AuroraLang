@@ -1,13 +1,16 @@
-
-if [["$1"] == "clean"]; then
-    cd src
-    make clean
-    exit 0
-elif [["$1"] == "--test"]; then
-    cd src
-    make install
-    exit 0
+if [ $# -gt 0 ]; then # If there are any cmd line arguments
+    if [["$1"] == "clean"]; then
+        cd src
+        make clean
+        exit 0
+    elif [["$1"] == "--test"]; then
+        cd src
+        make install
+        exit 0
+    fi
 fi
+
+
 
 echo "Installing AUR..."
 
