@@ -80,6 +80,43 @@ AstNode* parseExpression(Lexer *lexer) {
     return left;
 }
 
+AstNode* parseIf(Lexer* lexer) {
+    AstNode* node = new AstNode();
+    node-type = AST_IF
+
+    ctoken(lexer, TOKEN_IF);
+    
+    // condition expression, ex if (x == y)
+    node->condition = parseExpression(lexer);
+    node->body = parseBlock(lexer); // This is actually reusable, it will just parse all code that's inside {}
+
+     if (currentToken.type == TOKEN_ELSE) { // Parse else, not really needed, standalone if statements are allowed.
+        ctoken(lexer, TOKEN_ELSE);
+        node->elseBody = parseBlock(lexer);
+    }
+
+    return node;
+    
+}
+
+AstNode* parseBlock(Lexer* lexer) {
+    AstNode* node = new AstNode();
+    node->type = AST_BLOCK;
+
+    ctoken(lexer, TOKEN_LBRACE); // {
+
+    while (currentToken.type != TOKEN_RBRACE) {
+        node->statements.push_back(parseExpression(lexer));
+    }
+
+    ctoken(lexer, TOKEN_RBRACE); // }
+
+    return node;
+}
+
+
+
+
 // free the AST.
 void freeAst(AstNode* node) {
     if (!node)
