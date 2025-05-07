@@ -36,6 +36,16 @@ typedef enum {
 
   // Logic
   TOKEN_EQUAL_TO,
+
+  // Loops..
+  TOKEN_WHILE,
+  TOKEN_RETURN,
+
+  // Comparison..
+  TOKEN_IF, 
+  TOKEN_ELSE,
+  TOKEN_ELIF,
+
   // Other..
   TOKEN_SPACE,
   TOKEN_EOF 
