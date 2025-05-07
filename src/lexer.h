@@ -34,8 +34,13 @@ typedef enum {
   TOKEN_DIVIDE,
   TOKEN_ASSIGN,
 
-  // Logic
+  // Logic..
   TOKEN_EQUAL_TO,
+
+  //Variables..
+  TOKEN_GLOBAL,
+  TOKEN_LOCAL,
+  TOKEN_CONST,
 
   // Loops..
   TOKEN_WHILE,
