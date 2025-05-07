@@ -57,7 +57,7 @@ Token getToken(Lexer *lexer, const char c) {
         case 'a' ... 'z':  
         case 'A' ... 'Z':
             std::string identifier;
-            identifer += char;
+            identifer += c;
 
             char NextChar;
             while (isalnum(nextChar = fgetc(lexer->ifile))) {  // Include numbers in identifiers
