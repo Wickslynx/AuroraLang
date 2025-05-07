@@ -12,7 +12,7 @@ fi
 
 
 
-echo "Installing AUR..."
+echo "Installing AuroraLang..."
 
 while true; do
     echo "Do you want to install all additional dependencies? (Y/N)"
