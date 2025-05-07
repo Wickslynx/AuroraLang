@@ -18,7 +18,7 @@ struct AstNode {
   int value;
   char character;
   std::string varName; 
-  std::string condition;
+  AstNode* condition;;
   std::string body;
   std::string expression;
   
