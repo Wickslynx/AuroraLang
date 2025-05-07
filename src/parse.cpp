@@ -80,7 +80,7 @@ AstNode* parseExpression(Lexer *lexer) {
     return left;
 }
 
-AstNode* parselocal(Lexer* lexer) {
+AstNode* parseLocal(Lexer* lexer) {
     AstNode* node = new AstNode();
     node->type = AST_VARIABLE;
 
