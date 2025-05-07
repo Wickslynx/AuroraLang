@@ -41,7 +41,9 @@ Token getNextToken(Lexer *lexer) {
 
 Token getToken(Lexer *lexer, const char c) {
     Token token;
-
+    std::string identifier;
+    char nextChar;
+    
     switch(c) {
         case '0' ... '9': {
             int number = c - '0'; 
@@ -56,10 +58,7 @@ Token getToken(Lexer *lexer, const char c) {
         }
         case 'a' ... 'z':  
         case 'A' ... 'Z':
-            std::string identifier;
-            identifer += c;
-
-            char NextChar;
+            identifier += c;
             while (isalnum(nextChar = fgetc(lexer->ifile))) {  // Include numbers in identifiers
                 identifier += nextChar;
             }
@@ -80,10 +79,10 @@ Token getToken(Lexer *lexer, const char c) {
             } else if (identifier == "local") {
                 token.type = TOKEN_LOCAL;
             } else if (identifier == "global") {
-                token.type = TOKEN_GLObAL;
+                token.type = TOKEN_GLOBAL;
             } else {
                 token.type = TOKEN_IDENTIFIER;
-                token.identifier = identifier;
+                token.identifier = identifier.c_str();
             }
             
             break;
