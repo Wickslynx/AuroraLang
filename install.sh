@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [ $# -gt 0 ]; then # If there are any cmd line arguments
     if [["$1"] == "clean"]; then
         cd src
