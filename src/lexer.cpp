@@ -75,7 +75,8 @@ Token getToken(Lexer *lexer, const char c) {
                 token.type = TOKEN_WHILE;
             } else if (identifier == "return") {
                 token.type = TOKEN_RETURN;
-            }
+            } else if (identifier == "const") {
+                token.type = TOKEN_CONST
             
             break;
         case '+':
