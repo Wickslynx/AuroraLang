@@ -18,7 +18,8 @@ struct AstNode {
   AstType type;
   int value;
   char character;
-  std::string varName; 
+  std::string varName;
+  std::string label;
   AstNode* condition;;
   AstNode* body;
   AstNode* elseBody;
