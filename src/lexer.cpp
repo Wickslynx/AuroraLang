@@ -82,7 +82,8 @@ Token getToken(Lexer *lexer, const char c) {
             } else if (identifier == "global") {
                 token.type = TOKEN_GLObAL;
             } else {
-                
+                token.type = TOKEN_IDENTIFIER;
+                token.identifier = identifier;
             }
             
             break;
