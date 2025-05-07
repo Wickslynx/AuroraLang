@@ -50,10 +50,13 @@ typedef enum {
   TOKEN_IF, 
   TOKEN_ELSE,
   TOKEN_ELIF,
-
+  // Symbols..
+  TOKEN_RBRACE,
+  TOKEN_LBRACE,
+  
   // Other..
   TOKEN_SPACE,
-  TOKEN_EOF 
+  TOKEN_EOF
 } TokenType;
 
 typedef struct {
