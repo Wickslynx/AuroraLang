@@ -20,6 +20,7 @@ struct AstNode {
   std::string varName; 
   std::string condition;
   std::string body;
+  std::string expression;
   
   TokenType toktype;
   
