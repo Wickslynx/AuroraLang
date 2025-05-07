@@ -45,7 +45,7 @@ void generate(AstNode* node) {
             instructions.push_back("mov [" + node->varName + "], rax");
             break;
 
-        case AST_VARIABLE_REFERENCE:
+        case AST_VARIABLE_VALUE:
             instructions.push_back("mov rax, [" + node->varName + "]");
             break;
 
