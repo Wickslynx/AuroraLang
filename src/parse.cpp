@@ -99,15 +99,34 @@ AstNode* parselocal(Lexer* lexer) {
     // check for assignment (=)
     if (currentToken.type == TOKEN_ASSIGN) {
         ctoken(lexer, TOKEN_ASSIGN);
-        node->value = parseExpression(lexer);
+        node->expression = parseExpression(lexer);
     }
 
     return node;
 }
 
+AstNode* parseBlock(Lexer* lexer) {
+    AstNode* node = new AstNode();
+    node->type = AST_BLOCK;
+
+    ctoken(lexer, TOKEN_LBRACE); // {
+
+    while (currentToken.type != TOKEN_RBRACE) {
+        node->statements.push_back(parseStatement(lexer));
+    }
+
+    ctoken(lexer, TOKEN_RBRACE); // }
+
+    return node;
+}
+
+
+
+
+
 AstNode* parseIf(Lexer* lexer) {
     AstNode* node = new AstNode();
-    node->type = AST_IF
+    node->type = AST_IF;
 
     ctoken(lexer, TOKEN_IF);
     
@@ -133,22 +152,6 @@ AstNode* parseStatement(Lexer* lexer) {
         default:
             return parseExpression(lexer);
     }
-}
-
-
-AstNode* parseBlock(Lexer* lexer) {
-    AstNode* node = new AstNode();
-    node->type = AST_BLOCK;
-
-    ctoken(lexer, TOKEN_LBRACE); // {
-
-    while (currentToken.type != TOKEN_RBRACE) {
-        node->statements.push_back(parseStatement(lexer));
-    }
-
-    ctoken(lexer, TOKEN_RBRACE); // }
-
-    return node;
 }
 
 
