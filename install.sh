@@ -39,11 +39,15 @@ done
 
 cd src
 
-echo "Do you want to install the program into the system? (Y/N)"
+echo "Do you want to install the program globaly? (Y/N)"
 read install
 
 if [[ "$install" == "Y" ]]; then
-    make install
+    if [ "$(id -u)" -eq 0 ]; then
+        make install
+    else 
+        echo "You need to run this program with root! (sudo)"
+    fi
 elif [[ "$install" == "N" ]]; then
     make
 fi
