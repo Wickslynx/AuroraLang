@@ -76,7 +76,14 @@ Token getToken(Lexer *lexer, const char c) {
             } else if (identifier == "return") {
                 token.type = TOKEN_RETURN;
             } else if (identifier == "const") {
-                token.type = TOKEN_CONST
+                token.type = TOKEN_CONST;
+            } else if (identifier == "local") {
+                token.type = TOKEN_LOCAL;
+            } else if (identifier == "global") {
+                token.type = TOKEN_GLObAL;
+            } else {
+                
+            }
             
             break;
         case '+':
