@@ -56,8 +56,27 @@ Token getToken(Lexer *lexer, const char c) {
         }
         case 'a' ... 'z':  
         case 'A' ... 'Z':
-            token.type = TOKEN_CHAR;
-            token.character = c;
+            std::string identifier;
+            identifer += char;
+
+            char NextChar;
+            while (isalnum(nextChar = fgetc(lexer->ifile))) {  // Include numbers in identifiers
+                identifier += nextChar;
+            }
+            ungetc(nextChar, lexer->ifile); // Push back all non identifiers.
+
+            if (identifier == "if") {
+                token.type = TOKEN_IF;
+            } else if (identifier == "elif") {
+                token.type = TOKEN_ELIF;
+            } else if (identifier == "else") {
+                token.type = TOKEN_ELSE;
+            } else if (identifier == "while") {
+                token.type = TOKEN_WHILE;
+            } else if (identifier == "return") {
+                token.type = TOKEN_RETURN;
+            }
+            
             break;
         case '+':
             token.type = TOKEN_PLUS;
