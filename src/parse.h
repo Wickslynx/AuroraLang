@@ -3,6 +3,7 @@
 
 #include "lexer.h"
 #include <string>
+#include <vector
 
 enum AstType {
   AST_INT,
@@ -22,7 +23,7 @@ struct AstNode {
   AstNode* body;
   AstNode* elseBody;
   AstNode* expression;
-  AstNode* statements;
+  std::vector<AstNode*> statements;
   
   TokenType toktype;
   
