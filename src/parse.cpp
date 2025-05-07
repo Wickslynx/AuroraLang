@@ -105,6 +105,20 @@ AstNode* parseLocal(Lexer* lexer) {
     return node;
 }
 
+AstNode* parseStatement(Lexer* lexer) {
+    switch (currentToken.type) {
+        case TOKEN_IF:
+            return parseIf(lexer);
+        case TOKEN_LOCAL:
+            return parseLocal(lexer);
+        default:
+            return parseExpression(lexer);
+    }
+}
+
+
+
+
 AstNode* parseBlock(Lexer* lexer) {
     AstNode* node = new AstNode();
     node->type = AST_BLOCK;
@@ -142,18 +156,6 @@ AstNode* parseIf(Lexer* lexer) {
     return node;
     
 }
-
-AstNode* parseStatement(Lexer* lexer) {
-    switch (currentToken.type) {
-        case TOKEN_IF:
-            return parseIf(lexer);
-        case TOKEN_LOCAL:
-            return parseLocal(lexer);
-        default:
-            return parseExpression(lexer);
-    }
-}
-
 
 
 
