@@ -1,3 +1,10 @@
+
+if [["$1"] == "clean"]; then
+    cd src
+    make clean
+    exit 0
+fi
+
 echo "Installing AUR..."
 
 while true; do
