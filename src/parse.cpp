@@ -162,7 +162,7 @@ AstNode* parseBlock(Lexer* lexer) {
 std::vector<AstNode*> parseParams(Lexer *lexer) {
     std::vector<AstNode*> params;
     // Empty?
-    if (currentToken.type == TOKEN_RPAREN) {
+    if (currentToken.type == TOKEN_RPARAN) {
         return params;
     }
 
