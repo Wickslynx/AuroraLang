@@ -109,6 +109,14 @@ Token getToken(Lexer *lexer, const char c) {
         case '}':
             token.type = TOKEN_LBRACE;
             break;
+        case '(':
+            token.type = TOKEN_RPARAN
+            break;
+        case ')':
+            token.type = TOKEN_LPARAN;
+            break;
+        case ';':
+            token.type = TOKEN_SEMICOL;
         case '"': { // Start of a string
             std::string strValue;
             char nextChar;
