@@ -131,7 +131,7 @@ void emit(std::string out) {
 
     
     file << "print:\n";
-    file << "    mov rsi, rdi\n";  /
+    file << "    mov rsi, rdi\n";  
     file << "    call strlen\n";   // get strlen
     file << "    mov rax, 1\n";    // syscall: sys_write
     file << "    mov rdi, 1\n";    // stdout 
