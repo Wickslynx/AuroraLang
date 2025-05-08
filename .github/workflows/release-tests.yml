@@ -15,11 +15,8 @@ jobs:
     - uses: actions/checkout@v4
     - name: Install dependencies
       run: sudo apt update && sudo apt-get install nasm g++
-       
-    - name: Go into source dir
-      run: cd src
       
     - name: Make the compiler
-      run: make 
+      run: cd src && make 
 
     
