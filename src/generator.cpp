@@ -72,6 +72,12 @@ void generate(AstNode* node) {
             instructions.push_back("ret"); // return  
             break;
         case AST_FUNC_CALL:
+            if (node->label == "print")  {
+                generate(node->params[0]);
+                instructions.push_back("mov rdi, rax");
+                instructions.push_back("call print");
+            }
+            
             for (auto &arg : node->params) {
                 generate(arg);
                 instructions.push_back("push rax"); // pass args
@@ -112,10 +118,32 @@ void emit(std::string out) {
         file << "    " << instr << std::endl;
     }
 
+    // For now all will be declared in here, I will add parsing other files soon.
+    file << "strlen:\n";
+    file << "    mov rdx, 0\n";
+    file << "strlen_loop:\n";
+    file << "    cmp byte [rsi + rdx], 0\n";
+    file << "    je strlen_done\n";
+    file << "    inc rdx\n";
+    file << "    jmp strlen_loop\n";
+    file << "strlen_done:\n";
+    file << "    ret\n";
+
+    
+    file << "print:\n";
+    file << "    mov rsi, rdi\n";  /
+    file << "    call strlen\n";   // get strlen
+    file << "    mov rax, 1\n";    // syscall: sys_write
+    file << "    mov rdi, 1\n";    // stdout 
+    file << "    syscall\n";
+    file << "    ret\n";
+
+
     // exit program
     file << "    mov rax, 60\n";   // syscall exit
     file << "    xor rdi, rdi\n";  // exit(0)
     file << "    syscall\n";
+
 
     file.close();
 
