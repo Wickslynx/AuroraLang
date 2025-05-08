@@ -60,7 +60,7 @@ typedef enum {
   TOKEN_LBRACE,
   TOKEN_RPARAN,
   TOKEN_RPARAN,
-  TOKEN_SEMICOL,,
+  TOKEN_SEMICOL,
   
   // Other..
   TOKEN_SPACE,
