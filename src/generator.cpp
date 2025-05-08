@@ -66,6 +66,19 @@ void generate(AstNode* node) {
             instructions.push_back("END_IF_" + node->label + ":");
             break;
 
+        case AST_FUNC:
+            instructions.push_back(node->label + ":");
+            generate(node-body);
+            instructions.pus_back("ret"); // return  
+        case AST_FUNC_CALL:
+            for (auto &arg : node->params) {
+                generate(arg)
+                instructions.push_back("push rax"); // pass args
+            }
+
+            instructions.push_back("call" + node->label);
+            break;
+
         default:
             std::cerr << "Error: Unsupported AST node type." << std::endl;
             std::exit(EXIT_FAILURE);
