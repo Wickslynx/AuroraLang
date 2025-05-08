@@ -192,7 +192,7 @@ std::vector<AstNode*> parseParams(Lexer *lexer) {
 
 AstNode* parseFunc(Lexer *lexer) {
     AstNode* node = new AstNode();
-    node-type = AST_FUNC;
+    node->type = AST_FUNC;
 
     ctoken(lexer, TOKEN_FUNC);
 
@@ -204,9 +204,9 @@ AstNode* parseFunc(Lexer *lexer) {
     node->label = currentToken.identifier;
     ctoken(lexer, TOKEN_IDENTIFIER);
 
-    ctoken(lexer, TOKEN_LPAREN);
+    ctoken(lexer, TOKEN_LPARAN);
     node->params = parseParams(lexer);
-    ctoken(lexer, TOKEN_RPAREN);
+    ctoken(lexer, TOKEN_RPARAN);
 
     node->body = parseBlock(lexer);
     
