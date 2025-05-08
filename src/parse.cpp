@@ -231,7 +231,19 @@ AstNode* parseIf(Lexer* lexer) {
     
 }
 
+AstNode* parseFuncCall(Lexer* lexer) {
+    AstNode* node = new AstNode();
+    node->type = AST_FUNC_CALL;
+    node->label = currentToken.identifier;
 
+    ctoken(lexer, TOKEN_IDENTIFIER);
+    ctoken(lexer, TOKEN_LPARAN); // (
+
+    node->params = parseParams(lexer);
+
+    ctoken(lexer, TOKEN_RPARAN);
+    return node;
+}
 
 // free the AST.
 void freeAst(AstNode* node) {
