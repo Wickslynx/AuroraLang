@@ -159,9 +159,58 @@ AstNode* parseBlock(Lexer* lexer) {
     return node;
 }
 
+std::vector<AstNode*> parseParams(Lexer *lexer) {
+    std::vector<AstNode*> params;
+    // Empty?
+    if (currentToken.type == TOKEN_RPAREN) {
+        return params;
+    }
+
+    while (true) {
+        if (currentToken.type != TOKEN_IDENTIFIER) {
+            std::cerr << "Error: Expected parameter name." << std::endl;
+            std::exit(EXIT_FAILURE);
+        }
+
+        AstNode* param = new AstNode();
+        param->type = AST_PARAM;
+        param->varName = currentToken.identifier;
+        ctoken(lexer, TOKEN_IDENTIFIER);
+        params.push_back(param);
+
+        // When we reach a comma, just parse it and get the next identifier.
+        if (currentToken.type == TOKEN_COMMA) {
+            ctoken(lexer, TOKEN_COMMA);
+        } else {
+            break;
+        }
+    }
+
+    return params;
+}
 
 
+AstNode* parseFunc(Lexer *lexer) {
+    AstNode* node = new AstNode();
+    node-type = AST_FUNC;
 
+    ctoken(lexer, TOKEN_FUNC);
+
+    if (currentToken.type != TOKEN_IDENTIFIER) {
+        std::cerr << "Error: Expected function name." << std::endl;
+        std::exit(EXIT_FAILURE);
+    }
+    
+    node->label = currentToken.identifier;
+    ctoken(lexer, TOKEN_IDENTIFIER);
+
+    ctoken(lexer, TOKEN_LPAREN);
+    node->params = parseParams(lexer);
+    ctoken(lexer, TOKEN_RPAREN);
+
+    node->body = parseBlock(lexer);
+    
+}
 
 AstNode* parseIf(Lexer* lexer) {
     AstNode* node = new AstNode();
