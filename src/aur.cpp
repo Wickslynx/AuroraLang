@@ -23,8 +23,6 @@ int main(int argc, char* argv[]) {
         return 1;
     }
 
-    }
-
     char* filename = argv[1];  // First argument is always filename..
     char* outfile = argv[2];   // Second argument is always out file..
 
