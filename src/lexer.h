@@ -58,6 +58,9 @@ typedef enum {
   // Symbols..
   TOKEN_RBRACE,
   TOKEN_LBRACE,
+  TOKEN_RPARAN,
+  TOKEN_RPARAN,
+  TOKEN_SEMICOL,,
   
   // Other..
   TOKEN_SPACE,
