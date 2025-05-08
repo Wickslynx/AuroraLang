@@ -116,7 +116,9 @@ void emit(std::string out) {
             std::cin >> uresponse;
             if (uresponse != "override") {
                 exit(0);
-            } 
+            }  else {
+                break;
+            }
         }
     }
     
