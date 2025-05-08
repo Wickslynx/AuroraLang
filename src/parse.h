@@ -26,6 +26,7 @@ struct AstNode {
   AstNode* elseBody;
   AstNode* expression;
   std::vector<AstNode*> statements;
+  std::vector<AstNode*> params;
   
   TokenType toktype;
   
