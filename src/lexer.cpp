@@ -109,6 +109,9 @@ Token getToken(Lexer *lexer, const char c) {
         case '}':
             token.type = TOKEN_LBRACE;
             break;
+        case ',':
+            token.type = TOKEN_COMMA;
+            break;
         case '(':
             token.type = TOKEN_RPARAN;
             break;
