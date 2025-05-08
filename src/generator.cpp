@@ -112,9 +112,9 @@ void emit(std::string out) {
 
     for (char c : out) {
         if (isalnum(c) || c == '"' || c == '-') {
-            std::cout << "Suspicious input detected... Are you sure you want to run this? If you want to override this, please type \"override\" \n Command you are about to run: " << out << std::endl;
+            std::cout << "Suspicious input detected... Are you sure you want to run this? If you want to override this, please type \"override\" \n Command you are about to run: " << out << "\n:";
             std::cin >> uresponse;
-            if (!uresponse == "override") {
+            if (uresponse != "override") {
                 exit(0);
             } 
         }
