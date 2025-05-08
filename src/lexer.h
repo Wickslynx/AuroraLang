@@ -61,6 +61,7 @@ typedef enum {
   TOKEN_RPARAN,
   TOKEN_LPARAN,
   TOKEN_SEMICOL,
+  TOKEN_COMMA,
   
   // Other..
   TOKEN_SPACE,
