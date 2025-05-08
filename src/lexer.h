@@ -59,7 +59,7 @@ typedef enum {
   TOKEN_RBRACE,
   TOKEN_LBRACE,
   TOKEN_RPARAN,
-  TOKEN_RPARAN,
+  TOKEN_LPARAN,
   TOKEN_SEMICOL,
   
   // Other..
