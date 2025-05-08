@@ -68,8 +68,9 @@ void generate(AstNode* node) {
 
         case AST_FUNC:
             instructions.push_back(node->label + ":");
-            generate(node-body);
+            generate(node->body);
             instructions.push_back("ret"); // return  
+            break;
         case AST_FUNC_CALL:
             for (auto &arg : node->params) {
                 generate(arg);
