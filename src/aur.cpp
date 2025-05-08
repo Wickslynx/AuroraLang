@@ -12,14 +12,17 @@ aur hello.aur hello
 
 
 int main(int argc, char* argv[]) {
+    if (strcmp(argv[1], "--version") == 0) {
+        std::cout << "(V) Aur  1.0.0 (BETA) \n  (L) MIT License  \n Build: Stable-release. \n Support: https://github.com/Wickslynx/AuroraLang/issues \n";
+        return 0;
+    }
+    
+    
     if (argc < 3) {
         std::cerr << "Usage: " << argv[0] << " <input_file.aur> <output_file>" << std::endl;
         return 1;
     }
 
-    if (strcmp(argv[1], "--version") == 0) {
-        std::cout << "(V) Aur  1.0.0 (BETA) \n  (L) MIT License  \n Build: Stable-release. \n Support: https://github.com/Wickslynx/AuroraLang/issues \n";
-        return 0;
     }
 
     char* filename = argv[1];  // First argument is always filename..
