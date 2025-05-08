@@ -110,7 +110,7 @@ Token getToken(Lexer *lexer, const char c) {
             token.type = TOKEN_LBRACE;
             break;
         case '(':
-            token.type = TOKEN_RPARAN
+            token.type = TOKEN_RPARAN;
             break;
         case ')':
             token.type = TOKEN_LPARAN;
