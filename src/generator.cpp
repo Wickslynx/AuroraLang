@@ -72,18 +72,23 @@ void generate(AstNode* node) {
             instructions.push_back("ret"); // return  
             break;
         case AST_FUNC_CALL:
-            if (node->label == "print")  {
-                generate(node->params[0]);
-                instructions.push_back("mov rdi, rax");
+            if (node->label == "print") {
+                if (node->params[0]->type == AST_STRING) {
+                    std::string strLabel = "str_" + std::to_string(data_section.size());
+                    data_section.push_back(strLabel + " db '" + node->params[0]->strValue + "', 0");
+                    instructions.push_back("mov rdi, " + strLabel);
+                } else {
+                    generate(node->params[0]);  
+                    instructions.push_back("mov rdi, rax"); 
+                }
                 instructions.push_back("call print");
+            } else {
+                for (auto &arg : node->params) {
+                    generate(arg);
+                    instructions.push_back("push rax"); // Pass arguments
+                }
+                instructions.push_back("call " + node->label);
             }
-            
-            for (auto &arg : node->params) {
-                generate(arg);
-                instructions.push_back("push rax"); // pass args
-            }
-
-            instructions.push_back("call" + node->label);
             break;
 
         default:
