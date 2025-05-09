@@ -144,6 +144,8 @@ AstNode* parseStatement(Lexer* lexer) {
             return parseIf(lexer);
         case TOKEN_LOCAL:
             return parseLocal(lexer);
+        case TOKEN_IDENTIFIER:
+            return parseFuncCall(lexer);
         default:
             return parseExpression(lexer);
     }
@@ -230,6 +232,8 @@ AstNode* parseFunc(Lexer *lexer) {
     ctoken(lexer, TOKEN_RPARAN);
 
     node->body = parseBlock(lexer);
+
+    return node;
     
 }
 
