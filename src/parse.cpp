@@ -138,19 +138,6 @@ AstNode* parseGlobal(Lexer* lexer) {
     return node;
 }
 
-AstNode* parseStatement(Lexer* lexer) {
-    switch (currentToken.type) {
-        case TOKEN_IF:
-            return parseIf(lexer);
-        case TOKEN_LOCAL:
-            return parseLocal(lexer);
-        case TOKEN_IDENTIFIER:
-            return parseFuncCall(lexer);
-        default:
-            return parseExpression(lexer);
-    }
-}
-
 
 
 
@@ -269,6 +256,20 @@ AstNode* parseFuncCall(Lexer* lexer) {
     ctoken(lexer, TOKEN_RPARAN);
     return node;
 }
+
+AstNode* parseStatement(Lexer* lexer) {
+    switch (currentToken.type) {
+        case TOKEN_IF:
+            return parseIf(lexer);
+        case TOKEN_LOCAL:
+            return parseLocal(lexer);
+        case TOKEN_IDENTIFIER:
+            return parseFuncCall(lexer);
+        default:
+            return parseExpression(lexer);
+    }
+}
+
 
 // free the AST.
 void freeAst(AstNode* node) {
