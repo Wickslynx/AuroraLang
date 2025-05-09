@@ -247,7 +247,7 @@ AstNode* parseFuncCall(Lexer* lexer) {
     ctoken(lexer, TOKEN_IDENTIFIER);
     ctoken(lexer, TOKEN_LPARAN); // (
 
-    node->params = parseParams(lexer);
+    node->params = parseExpression(lexer);
 
     ctoken(lexer, TOKEN_RPARAN);
     return node;
