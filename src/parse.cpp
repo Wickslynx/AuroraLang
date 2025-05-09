@@ -169,26 +169,38 @@ AstNode* parseBlock(Lexer* lexer) {
 
 std::vector<AstNode*> parseParams(Lexer *lexer) {
     std::vector<AstNode*> params;
-    // Empty?
+
     if (currentToken.type == TOKEN_RPARAN) {
-        return params;
+        return params;  // Empty parameters case
     }
 
     while (true) {
-        if (currentToken.type != TOKEN_IDENTIFIER) {
-            std::cerr << "Error: Expected parameter name." << std::endl;
+        AstNode* param = new AstNode();
+
+        if (currentToken.type == TOKEN_IDENTIFIER) {
+            param->type = AST_PARAM;
+            param->varName = currentToken.identifier;
+            ctoken(lexer, TOKEN_IDENTIFIER);
+
+        } else if (currentToken.type == TOKEN_STRING) {
+            param->type = AST_STRING;
+            param->strValue = currentToken.strValue;
+            ctoken(lexer, TOKEN_STRING);
+
+        } else if (currentToken.type == TOKEN_INT) {
+            param->type = AST_INT;
+            param->value = currentToken.value;
+            ctoken(lexer, TOKEN_INT);
+
+        } else {
+            std::cerr << "Error: Unexpected parameter type." << std::endl;
             std::exit(EXIT_FAILURE);
         }
 
-        AstNode* param = new AstNode();
-        param->type = AST_PARAM;
-        param->varName = currentToken.identifier;
-        ctoken(lexer, TOKEN_IDENTIFIER);
         params.push_back(param);
 
-        // When we reach a comma, just parse it and get the next identifier.
         if (currentToken.type == TOKEN_COMMA) {
-            ctoken(lexer, TOKEN_COMMA);
+            ctoken(lexer, TOKEN_COMMA); 
         } else {
             break;
         }
@@ -196,6 +208,7 @@ std::vector<AstNode*> parseParams(Lexer *lexer) {
 
     return params;
 }
+
 
 
 AstNode* parseFunc(Lexer *lexer) {
@@ -247,7 +260,7 @@ AstNode* parseFuncCall(Lexer* lexer) {
     ctoken(lexer, TOKEN_IDENTIFIER);
     ctoken(lexer, TOKEN_LPARAN); // (
 
-    node->params = parseExpression(lexer);
+    node->params = parseParams(lexer);
 
     ctoken(lexer, TOKEN_RPARAN);
     return node;
