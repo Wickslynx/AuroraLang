@@ -8,6 +8,7 @@
 enum AstType {
   AST_INT,
   AST_CHAR,
+  AST_STRING,
   AST_BLOCK,
   AST_IF,
   AST_FUNC,
@@ -22,6 +23,7 @@ struct AstNode {
   AstType type;
   int value;
   char character;
+  std::string strValue;
   std::string varName;
   std::string label;
   AstNode* condition;;
