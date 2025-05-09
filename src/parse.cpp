@@ -47,7 +47,7 @@ AstNode* parsePrimary(Lexer *lexer) {
         case TOKEN_STRING:
             node->type = AST_STRING;
             node->strValue = currentToken.strValue;
-            node->toktype = currenToken.type;
+            node->toktype = currentToken.type;
             ctoken(lexer, TOKEN_STRING);
             break;
             
