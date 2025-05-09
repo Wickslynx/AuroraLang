@@ -32,17 +32,25 @@ AstNode* parsePrimary(Lexer *lexer) {
     
     switch (currentToken.type) {
         case TOKEN_INT:
-            node->type     = AST_INT;
-            node->value    = currentToken.value;
-            node->toktype  = currentToken.type;
+            node->type = AST_INT;
+            node->value = currentToken.value;
+            node->toktype = currentToken.type;
             ctoken(lexer, TOKEN_INT);
             break;
         case TOKEN_CHAR:
-            node->type      = AST_CHAR;
+            node->type = AST_CHAR;
             node->character = currentToken.character;
-            node->toktype   = currentToken.type;
+            node->toktype = currentToken.type;
             ctoken(lexer, TOKEN_CHAR);
             break;
+
+        case TOKEN_STRING:
+            node->type = AST_STRING;
+            node->strValue = currentToken.strValue;
+            node->toktype = currenToken.type;
+            ctoken(lexer, TOKEN_STRING);
+            break;
+            
         default:
             std::cerr << "Expected an integer or character literal." << std::endl;
             std::exit(EXIT_FAILURE);
