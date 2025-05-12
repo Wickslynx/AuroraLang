@@ -151,6 +151,11 @@ Token getToken(Lexer *lexer, const char c) {
             printf("Debug: (Found) %s TYPE=STR\n", strValue.c_str());
             break;
         }
+        case '\n':
+            token.type = TOKEN_NEWLINE;
+            printf("Debug: (Found) NEWLINE\n");
+            break;
+
         
         default:
             printf("Debug: (Found) EOF\n");
