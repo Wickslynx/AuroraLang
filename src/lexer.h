@@ -65,6 +65,7 @@ typedef enum {
   
   // Other..
   TOKEN_SPACE,
+  TOKEN_NEWLINE,
   TOKEN_EOF
 } TokenType;
 
