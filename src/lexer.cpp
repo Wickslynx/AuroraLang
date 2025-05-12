@@ -54,6 +54,7 @@ Token getToken(Lexer *lexer, const char c) {
             ungetc(nextChar, lexer->ifile);
             token.type = TOKEN_INT;
             token.value = number;
+            printf("Debug: (Found) %d TYPE=INT\n", number);
             break;
         }
         case 'a' ... 'z':  
@@ -87,39 +88,52 @@ Token getToken(Lexer *lexer, const char c) {
                 token.identifier = identifier.c_str();
             }
             
+            printf("Debug: (Found) %s\n", identifier.c_str());
             break;
         case '+':
             token.type = TOKEN_PLUS;
+            printf("Debug: (Found) +\n");
             break;
         case '-':
             token.type = TOKEN_MINUS;
+            printf("Debug: (Found) -\n");
             break;
         case '/':
             token.type = TOKEN_DIVIDE;
+            printf("Debug: (Found) /\n");
             break;
         case ' ':
             token.type = TOKEN_SPACE;
+            printf("Debug: (Found) SPACE\n");
             break;
         case '=':
+            printf("Debug: (Found) =\n");
             token.type = TOKEN_ASSIGN;
             break;
         case '{':
+            printf("Debug: (Found) {\n");
             token.type = TOKEN_RBRACE;
             break;
         case '}':
             token.type = TOKEN_LBRACE;
+            printf("Debug: (Found) }\n");
             break;
         case ',':
             token.type = TOKEN_COMMA;
+            printf("Debug: (Found) ,\n");
             break;
         case '(':
             token.type = TOKEN_RPARAN;
+            printf("Debug: (Found) (\n");
             break;
         case ')':
+            printf("Debug: (Found) )\n");
             token.type = TOKEN_LPARAN;
             break;
         case ';':
             token.type = TOKEN_SEMICOL;
+            printf("Debug: (Found) ;\n");
+            break;
         case '"': { // Start of a string
             std::string strValue;
             char nextChar;
@@ -132,10 +146,12 @@ Token getToken(Lexer *lexer, const char c) {
             }
             token.type = TOKEN_STRING;
             token.strValue = strValue.c_str();
+            printf("Debug: (Found) %s TYPE=STR\n", strValue.c_str());
             break;
         }
         
         default:
+            printf("Debug: (Found) EOF\n");
             token.type = TOKEN_EOF;
             break;
     }
@@ -163,6 +179,9 @@ int lex(Lexer* lexer, const char* filename) {
     lexer->ifile = ifile;
     lexer->pos = 0;
 
+    printf("------------------------------\n");
+    printf("           LEXER - DEBUG      \n");
+    printf("------------------------------\n\n");
     while ((lexer->cchar = fgetc(ifile)) != EOF) {
         Token token = getToken(lexer, (char)lexer->cchar);
 
@@ -170,5 +189,7 @@ int lex(Lexer* lexer, const char* filename) {
     }
 
     fclose(ifile);
+    printf("\n\n");
+    
     return 0;
 }

@@ -28,23 +28,42 @@ int main(int argc, char* argv[]) {
 
     std::cout << "Compiling " << filename << " to " << outfile << "... \n";
 
-    // Step 1: Lex it.
+    // lex it.
     Lexer aurlexer;
     lex(&aurlexer, filename);
 
-    // Step 2: parse and build ast
+    // parse and build ast
     Token currentToken = getNextToken(&aurlexer);
-    AstNode* root = parseExpression(&aurlexer);
+    AstNode* root;
 
-    // Step 3: run semantic 
-    semanticAnalysis(root);
+    printf("------------------------------\n");
+    printf("          PARSER - DEBUG      \n");
+    printf("------------------------------\n\n");
 
-    // Step 4: generate asm code.
+    printf("(DEBUG) 43 - aur.cpp [Before loop]\n");
+
+    if (currentToken.type == TOKEN_EOF) {
+        std::cerr << "ERROR The file is empty.\n\n";
+    }
+
+    while (true) {
+        printf("(DEBUG) 45 - aur.cpp [Entered loop]\n");
+        root = parseStatement(&aurlexer);
+        // run semantic 
+        semanticAnalysis(root);
+
+        // generate asm code.
+        generate(root);
+
+        //Update tok.
+        currentToken = getNextToken(&aurlexer);
+    }
     
-    generate(root);
+    
+    
     emit(outfile);
 
-    // Step 5: cleanup
+    // cleanup
     freeAst(root);
 
     std::cout << "Compilation finished successfully.\n";

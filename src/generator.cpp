@@ -171,7 +171,7 @@ void emit(std::string out) {
     
     system(cmd.str().c_str());
 
-    #ifndef AURORALANG_DEBUG_FLAG
-    system("rm temp-aurolang-asm.asm temp-aurolang.o");
-    #endif
+    //#ifndef AURORALANG_DEBUG_FLAG
+    //system("rm temp-aurolang-asm.asm temp-aurolang.o");
+    //#endif
 }

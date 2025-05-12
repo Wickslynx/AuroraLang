@@ -257,15 +257,30 @@ AstNode* parseFuncCall(Lexer* lexer) {
     return node;
 }
 
-AstNode* parseStatement(Lexer* lexer) {
+AstNode* parseStatement(Lexer *lexer) {
+    printf("(DEBUG) 261 - parse.cpp\n");
     switch (currentToken.type) {
         case TOKEN_IF:
+            printf("(DEBUG) - IF found.");
             return parseIf(lexer);
         case TOKEN_LOCAL:
+            printf("(DEBUG) - Variable found.");
             return parseLocal(lexer);
         case TOKEN_IDENTIFIER:
+            printf("(DEBUG) - Function / Identifier found.");
             return parseFuncCall(lexer);
+        case TOKEN_LPARAN:
+            printf("(DEBUG) - Left Paranthesis found.");
+            break;
+        case TOKEN_RPARAN:
+            printf("(DEBUG) - Right Paranthesis found.");
+            break;
+        case TOKEN_FUNC:
+            printf("(DEBUG) - Function found.");
+            return parseFunc(lexer);
+            break;
         default:
+            printf("(DEBUG) - Other thing found.");
             return parseExpression(lexer);
     }
 }
