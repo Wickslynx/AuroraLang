@@ -42,11 +42,7 @@ int main(int argc, char* argv[]) {
 
     printf("(DEBUG) 43 - aur.cpp [Before loop]\n");
 
-    if (currentToken.type == TOKEN_EOF) {
-        std::cerr << "ERROR The file is empty.\n\n";
-    }
-
-    while (true) {
+    while (currentToken.type != TOKEN_EOF) {
         printf("(DEBUG) 45 - aur.cpp [Entered loop]\n");
         root = parseStatement(&aurlexer);
         // run semantic 
