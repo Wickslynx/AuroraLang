@@ -87,7 +87,7 @@ Token getToken(Lexer *lexer, const char c) {
                 token.type = TOKEN_FUNC;
             } else {
                 token.type = TOKEN_IDENTIFIER;
-                token.identifier = identifier;
+                token.identifier = identifier.c_str();
             }
             
             printf("Debug: (Found) %s\n", identifier.c_str());
