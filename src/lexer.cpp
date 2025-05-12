@@ -26,8 +26,10 @@ Token getNextToken(Lexer *lexer) {
     }
     
     lexer->cchar = fgetc(lexer->ifile); // Read from the file to get the next token.
+    std::cout << "(DEBUG) Read character: " << (char)lexer->cchar << std::endl;
     if (lexer->cchar == EOF) {
         Token token;
+        printf("Reached EOF!");
         token.type = TOKEN_EOF;
         return token;
     }
