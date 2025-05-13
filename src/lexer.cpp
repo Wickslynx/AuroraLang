@@ -24,6 +24,8 @@ Token getNextToken(Lexer *lexer) {
             exit(-1);
         }
     }
+
+    printf("(DEBUG) File pointer initialized: %p\n", (void*)ifile);
     
     lexer->cchar = fgetc(lexer->ifile); // Read from the file to get the next token.
     std::cout << "(DEBUG) Read character: " << (char)lexer->cchar << std::endl;
