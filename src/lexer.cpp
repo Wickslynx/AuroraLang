@@ -193,6 +193,8 @@ int lex(Lexer* lexer, const char* filename) {
         perror("(DEBUG) Error in file stream");
     }
 
+    fseek(lexer->ifile, 0, SEEK_SET);
+
     lexer->ifile = ifile;
     lexer->pos = 0;
 
