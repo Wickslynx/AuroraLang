@@ -189,6 +189,10 @@ int lex(Lexer* lexer, const char* filename) {
         aurerror(1, "Error opening file...");
     }
 
+    if (ferror(lexer->ifile)) {
+        perror("(DEBUG) Error in file stream");
+    }
+
     lexer->ifile = ifile;
     lexer->pos = 0;
 
