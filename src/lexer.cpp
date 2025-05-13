@@ -189,15 +189,16 @@ int lex(Lexer* lexer, const char* filename) {
         aurerror(1, "Error opening file...");
     }
 
+
+    lexer->ifile = ifile;
+    lexer->pos = 0;
+
     if (ferror(lexer->ifile)) {
         perror("(DEBUG) Error in file stream");
     }
 
     fseek(lexer->ifile, 0, SEEK_SET);
-
-    lexer->ifile = ifile;
-    lexer->pos = 0;
-
+    
     printf("------------------------------\n");
     printf("           LEXER - DEBUG      \n");
     printf("------------------------------\n\n");
