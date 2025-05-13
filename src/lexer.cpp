@@ -45,6 +45,10 @@ Token getToken(Lexer *lexer, const char c) {
     Token token;
     std::string identifier;
     char nextChar;
+
+    if (c == EOF) {
+        token.type = TOKEN_EOF;
+    }
     
     switch(c) {
         case '0' ... '9': {
@@ -158,8 +162,7 @@ Token getToken(Lexer *lexer, const char c) {
 
         
         default:
-            printf("Debug: (Found) EOF\n");
-            token.type = TOKEN_EOF;
+            printf("Warning: Found unreqonised characters.. Continuing..\n");
             break;
     }
     return token;
